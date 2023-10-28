@@ -8,9 +8,11 @@ public class tempPlayer : MonoBehaviour
     public float jumpForce = 5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
-
+    public float maxJumpTime = 0.5f;
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isJumping;
+    private float jumpTime;
     public Vector2 startingLocation;
 
     void Start()
@@ -41,7 +43,30 @@ public class tempPlayer : MonoBehaviour
         // Player jump
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            isJumping = true;
+            jumpTime = maxJumpTime;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        if (isJumping && Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
+            if (rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+        }
+
+        if (isJumping)
+        {
+            jumpTime -= Time.deltaTime;
+            if (jumpTime <= 0)
+            {
+                isJumping = false;
+                if (rb.velocity.y > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                }
+            }
         }
     }
 }
