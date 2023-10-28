@@ -5,7 +5,7 @@ using UnityEngine;
 public class tempPlayer : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
 
@@ -21,7 +21,7 @@ public class tempPlayer : MonoBehaviour
     {
         // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-
+        //comment
         // Player movement
         float moveDirection = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
