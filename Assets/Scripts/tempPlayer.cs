@@ -11,10 +11,12 @@ public class tempPlayer : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    public Vector2 startingLocation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startingLocation = transform.position;
     }
 
     void Update()
