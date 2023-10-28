@@ -58,7 +58,8 @@ public class tempPlayer : MonoBehaviour
             isJumping = false;
             if (rb.velocity.y > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                // rb.velocity = new Vector2(rb.velocity.x, 0);
             }
         }
 
