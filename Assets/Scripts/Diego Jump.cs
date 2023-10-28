@@ -28,7 +28,7 @@ public class DiegoJump : MonoBehaviour
         // Wall sliding check
         if(IsTouchingWall() && !IsGrounded()) {
             isWallSliding = true;
-            //rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
         }
         else {
             isWallSliding = false;
@@ -36,13 +36,7 @@ public class DiegoJump : MonoBehaviour
 
         // Jump button pressed
         if(Input.GetButtonDown("Jump")) {
-            // Wall Jump
-            if(isWallSliding) {
-                WallJump();
-            }
-            else {
-                Jump();
-            }
+            Jump();
         }
     }
 
@@ -50,12 +44,6 @@ public class DiegoJump : MonoBehaviour
         if(IsGrounded()) {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-    }
-
-    void WallJump() {
-        Vector2 wallJumpDir = new Vector2(-transform.localScale.x, 1f);
-        rb.AddForce(wallJumpDir * wallJumpForce, ForceMode2D.Impulse);
-        //rb.velocity = new Vector2(rb.velocity.x, wallJumpForce);
     }
 
     bool IsGrounded() {
