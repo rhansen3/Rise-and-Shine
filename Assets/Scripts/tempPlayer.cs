@@ -6,6 +6,10 @@ public class tempPlayer : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float wallSlideSpeed = 2f;
+
+    public Transform wallCheckL;
+    public Transform wallCheckR;
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float maxJumpTime = 0.5f;
@@ -40,6 +44,11 @@ public class tempPlayer : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
+        // Wall sliding
+        if(IsTouchingWall() && !isGrounded) {
+            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+        }
+
         // Player jump
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -68,5 +77,10 @@ public class tempPlayer : MonoBehaviour
                 }
             }
         }
+    }
+
+    bool IsTouchingWall() {
+        return  Physics2D.OverlapCircle(wallCheckL.position, 0.1f, groundLayer) ||
+                Physics2D.OverlapCircle(wallCheckR.position, 0.1f, groundLayer);
     }
 }

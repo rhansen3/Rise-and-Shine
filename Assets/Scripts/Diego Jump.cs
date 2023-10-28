@@ -10,7 +10,6 @@ public class DiegoJump : MonoBehaviour
     public float wallJumpForce = 5f;
     public float wallSlideSpeed = 2f;
 
-    private bool isWallSliding;
     public Transform wallCheckL;
     public Transform wallCheckR;
     public Transform groundCheck;
@@ -25,13 +24,9 @@ public class DiegoJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Wall sliding check
+        // Wall sliding
         if(IsTouchingWall() && !IsGrounded()) {
-            isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-        }
-        else {
-            isWallSliding = false;
         }
 
         // Jump button pressed

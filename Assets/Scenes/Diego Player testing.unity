@@ -1170,7 +1170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpForce: 10
-  wallJumpForce: 8
+  wallJumpForce: 10
   wallSlideSpeed: 4
   wallCheckL: {fileID: 1085912798}
   wallCheckR: {fileID: 853125817}
@@ -1200,7 +1200,7 @@ Transform:
   m_GameObject: {fileID: 853125816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0.45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1274,7 +1274,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diego Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5106428756851781718, guid: 441e45f3b3362074eaa81b28a58f5f8b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1423516908533958029, guid: 441e45f3b3362074eaa81b28a58f5f8b, type: 3}
@@ -1319,7 +1320,7 @@ Transform:
   m_GameObject: {fileID: 1085912797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
