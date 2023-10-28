@@ -6,10 +6,14 @@ public class enemy : MonoBehaviour
 {
 
     public float speed = 2f;
+    public float jumpForce = 5f;
     public Transform player;
     private Rigidbody2D rb;
-    public Transform wallCheckL;
-    public Transform wallCheckR;
+    public Transform lCheck;
+    public Transform rCheck;
+    public Transform groundCheck;
+    private bool isGrounded;
+    public LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +38,16 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        if(IsTouchingWall() && isGrounded) {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
         var step = speed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, player.position, step);
     }
 
+    bool IsTouchingWall() {
+        return  Physics2D.OverlapCircle(lCheck.position, 0.1f, groundLayer) ||
+                Physics2D.OverlapCircle(rCheck.position, 0.1f, groundLayer);
+    }
 }
