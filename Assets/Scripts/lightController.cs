@@ -42,7 +42,18 @@ public class lightController : MonoBehaviour
             {
                 Light.lightUp();
             }
+            else
+            {
+                enemy foe = collision.gameObject.GetComponent<enemy>();
+                if (foe != null)
+                {
+                    foe.lightUp();
+                }
+            }
+            
         }
+        
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -52,6 +63,14 @@ public class lightController : MonoBehaviour
             if (Light != null)
             {
                 Light.lightOff();
+            }
+            else
+            {
+                enemy foe = collision.gameObject.GetComponent<enemy>();
+                if (foe != null)
+                {
+                    foe.lightOff();
+                }
             }
         }
     }
