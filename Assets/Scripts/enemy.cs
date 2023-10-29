@@ -32,6 +32,7 @@ public class enemy : MonoBehaviour
         lit = 0;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameManager>();
         hurtLight = gameObject.GetComponentInChildren<Light>();
     }
     void OnCollisionEnter2D(Collision2D collider){
@@ -78,13 +79,19 @@ public class enemy : MonoBehaviour
         {
             if (player.transform.position.x < transform.position.x)
             {
-                transform.localScale = new Vector2(scale, transform.localScale.y);
-                rb.velocity = new Vector2(speed * 1.5f, rb.velocity.y);
+                if (damageStreak > 0.1f)
+                {
+                    transform.localScale = new Vector2(scale, transform.localScale.y);
+                }
+                rb.velocity = new Vector2(speed * 1.5f * damageStreak, rb.velocity.y);
             }
             else
             {
-                transform.localScale = new Vector2(-scale, transform.localScale.y);
-                rb.velocity = new Vector2(-speed * 1.5f, rb.velocity.y);
+                if (damageStreak > 0.1f)
+                {
+                    transform.localScale = new Vector2(-scale, transform.localScale.y);
+                }
+                rb.velocity = new Vector2(-speed * 1.5f * damageStreak, rb.velocity.y);
             }
         }
 
