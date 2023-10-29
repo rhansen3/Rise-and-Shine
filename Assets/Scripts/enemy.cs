@@ -22,7 +22,9 @@ public class enemy : MonoBehaviour
 
     int lit = 0;
     public float health = 3;
-    private float damageStreak = 0f;
+    public float damageStreak = 0f;
+
+    public Light hurtLight;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class enemy : MonoBehaviour
         lit = 0;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        hurtLight = gameObject.GetComponentInChildren<Light>();
     }
     void OnCollisionEnter2D(Collision2D collider){
         if(collider.gameObject.tag == "Player"){
@@ -95,7 +98,7 @@ public class enemy : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
+            hurtLight.intensity = damageStreak * 2;
         }
     }
 
@@ -114,9 +117,13 @@ public class enemy : MonoBehaviour
         lit--;
         if(lit == 0)
         {
-            running = true;
-            timer = 1f;
+            if (damageStreak > 0.5f)
+            {
+                running = true;
+                timer = 1f;
+            }
             damageStreak = 0f;
+            hurtLight.intensity = 0f;
         }
     }
 
