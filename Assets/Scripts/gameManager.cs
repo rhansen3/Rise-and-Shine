@@ -38,11 +38,11 @@ public class gameManager : MonoBehaviour
         }
         if(lives == 0){
             health1.enabled = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(0);
         }
         
     }
     public void win(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 }
