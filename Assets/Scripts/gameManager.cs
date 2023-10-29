@@ -15,9 +15,12 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-           health1.enabled = true;
-           health2.enabled = true;
-           health3.enabled = true;
+        if (health1 != null && health2 != null && health3 != null)
+        {
+            health1.enabled = true;
+            health2.enabled = true;
+            health3.enabled = true;
+        }
     }
 
     // Update is called once per frame
