@@ -21,6 +21,8 @@ public class enemy : MonoBehaviour
 
     int lit = 0;
     public float health = 3;
+    float fullHealth;
+    float fullScale;
     public float damageStreak = 0f;
 
     public Light hurtLight;
@@ -33,6 +35,9 @@ public class enemy : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameManager>();
         hurtLight = gameObject.GetComponentInChildren<Light>();
+
+        fullHealth = health;
+        fullScale = transform.localScale.y;
     }
     void OnCollisionEnter2D(Collision2D collider){
         if(collider.gameObject.tag == "Player"){
@@ -116,6 +121,7 @@ public class enemy : MonoBehaviour
     public void lightUp()
     {
         lit++;
+        
     }
 
     public void lightOff()
@@ -130,6 +136,8 @@ public class enemy : MonoBehaviour
             }
             damageStreak = 0f;
             hurtLight.intensity = 0f;
+            health = fullHealth;
+            transform.localScale = new Vector2(fullScale,fullScale);
         }
     }
 
@@ -137,5 +145,9 @@ public class enemy : MonoBehaviour
     {
         health -= Time.deltaTime * 0.5f * (1f +(lit/100f));
         damageStreak += Time.deltaTime * 0.5f * (1f + (lit / 100f));
+
+        float ratio = health / fullHealth;
+        Debug.Log(ratio);
+        transform.localScale = new Vector2(ratio * fullScale, ratio * fullScale);
     }
 }
