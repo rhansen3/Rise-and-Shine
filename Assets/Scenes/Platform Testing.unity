@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!108 &220866013 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 4586699593543078240, guid: 8aff0949de08d854483a0af25b6079b0, type: 3}
+  m_PrefabInstance: {fileID: 2754962328095023158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &315798118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4398728618266105943, guid: fe7af7d6e976c95479ec2d1df584a8eb, type: 3}
@@ -1359,6 +1364,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1916401611}
     - target: {fileID: 1031788557785575355, guid: 8aff0949de08d854483a0af25b6079b0, type: 3}
+      propertyPath: hurtLight
+      value: 
+      objectReference: {fileID: 220866013}
+    - target: {fileID: 1031788557785575355, guid: 8aff0949de08d854483a0af25b6079b0, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1021062993}
@@ -1579,6 +1588,10 @@ PrefabInstance:
     - target: {fileID: 6179560163482109957, guid: 01b6b06eb124cd749b0ae0921ea6a786, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179560163482109957, guid: 01b6b06eb124cd749b0ae0921ea6a786, type: 3}
+      propertyPath: m_TagString
+      value: GameController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
