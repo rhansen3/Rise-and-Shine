@@ -1,8 +1,8 @@
-Ryder Hansen - Programmer
-Will Thomopoulos - Programmer
-Kyle Hansen - Programmer
-Jake Weiswasser - Programmer and Artist
-Michael Boze - Programmer
-Diego Patiño - Programmer and Music
-Maddie Vassalo - Lead Artist
-Tony Young - Music
+Ryder Hansen - Lead programming design
+Will Thomopoulos -Lead programmer
+Kyle Hansen - Ideation and programming technician
+Jake Weiswasser - Tile and terrain developer
+Michael Boze - Audio engineer
+Diego Patiño - Level designer and auditory support
+Maddie Vassalo - Character artist
+Tony Young - Lead musician
