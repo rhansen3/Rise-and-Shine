@@ -7,6 +7,7 @@ public class enemy : MonoBehaviour
 
     public float speed = 2f;
     public float jumpForce = 5f;
+    float runAwayTime = 1.5f;
     public Transform player;
     private Rigidbody2D rb;
     public Transform lCheck;
@@ -14,6 +15,9 @@ public class enemy : MonoBehaviour
     public Transform groundCheck;
     private bool isGrounded;
     public LayerMask groundLayer;
+    public gameManager gameManager;
+    bool running = false;
+    float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,16 +26,9 @@ public class enemy : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collider){
         if(collider.gameObject.tag == "Player"){
-            float timer = 0;
-            Debug.Log("Hurt player");
-            while(timer < 3){
-                if(player.transform.position.x < transform.position.x){
-                    rb.velocity = new Vector2(speed * 5, rb.velocity.y);
-                } else{
-                    rb.velocity = new Vector2(-speed * 5, rb.velocity.y);
-                }
-                timer += Time.deltaTime;
-            }
+            gameManager.takeDamage();
+            running = true;
+            timer = 0;
         }
     }
 
@@ -42,8 +39,27 @@ public class enemy : MonoBehaviour
         if(IsTouchingWall() && isGrounded) {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        var step = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, step);
+        if(!running){
+            if(player.transform.position.x < transform.position.x){
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
+            } else{
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+            }
+            var step = speed * Time.deltaTime;
+            Vector2 moveTo = new Vector2(transform.position.x, 10);
+            transform.position = Vector2.MoveTowards(transform.position, moveTo, step);
+        } else{
+            if(timer < runAwayTime){
+                if(player.transform.position.x < transform.position.x){
+                    rb.velocity = new Vector2(speed * 3, rb.velocity.y);
+                } else{
+                    rb.velocity = new Vector2(-speed * 3, rb.velocity.y);
+                }
+            } else{
+                running = false;
+            }
+            timer += Time.deltaTime;
+        }
     }
 
     bool IsTouchingWall() {
