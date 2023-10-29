@@ -18,6 +18,7 @@ public class enemy : MonoBehaviour
     public gameManager gameManager;
     bool running = false;
     float timer = 0f;
+    float scale = 6f;
 
     int lit = 0;
     public float health = 3;
@@ -47,8 +48,10 @@ public class enemy : MonoBehaviour
         }
         if(!running && lit == 0){
             if(player.transform.position.x < transform.position.x){
+                transform.localScale = new Vector2(-scale, transform.localScale.y);
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
             } else{
+                transform.localScale = new Vector2(scale, transform.localScale.y);
                 rb.velocity = new Vector2(speed, rb.velocity.y);
             }
             var step = speed * Time.deltaTime;
@@ -57,8 +60,10 @@ public class enemy : MonoBehaviour
         } else if(running){
             if(timer < runAwayTime){
                 if(player.transform.position.x < transform.position.x){
+                    transform.localScale = new Vector2(scale, transform.localScale.y);
                     rb.velocity = new Vector2(speed * 3, rb.velocity.y);
                 } else{
+                    transform.localScale = new Vector2(-scale, transform.localScale.y);
                     rb.velocity = new Vector2(-speed * 3, rb.velocity.y);
                 }
             } else{
@@ -70,10 +75,12 @@ public class enemy : MonoBehaviour
         {
             if (player.transform.position.x < transform.position.x)
             {
+                transform.localScale = new Vector2(scale, transform.localScale.y);
                 rb.velocity = new Vector2(speed * 1.5f, rb.velocity.y);
             }
             else
             {
+                transform.localScale = new Vector2(-scale, transform.localScale.y);
                 rb.velocity = new Vector2(-speed * 1.5f, rb.velocity.y);
             }
         }
